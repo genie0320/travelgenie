@@ -1,0 +1,20 @@
+{
+    "travel": [
+        {
+            "title": "2 Nights Stay in Seoul",
+            "price": "₩ 700,000"
+        },
+        {
+            "title": "3 Nights Stay in Jeju",
+            "price": "₩ 1,200,000"
+        },
+        {
+            "title": "1 Nights Stay in Pohang",
+            "price": "₩ 150,000"
+        },
+        {
+            "title": "5 Nights Stay in Gyeongju",
+            "price": "₩ 850,000"
+        }
+    ]
+}
