@@ -1,9 +1,12 @@
 import './App.css';
+import TravelList from './components/TravelList';
+
+// fetch & useEffect
 
 function App() {
   return (
     <div className="App">
-      안녕하세요. 초보입니다.
+      <TravelList />
     </div>
   );
 }
