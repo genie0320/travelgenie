@@ -7,11 +7,12 @@ import './TravelList.css'
 
 export default function TravelList() {
     const [url, setUrl] = useState('http://localhost:3000/travel')
-    const { data: travels } = useFetch(url)
+    const { data: travels, isPending } = useFetch(url)
 
     return (
         <div className="travel-list">
             <h2>Travel Genie</h2>
+            {isPending && <div className="pendingBox">Now Loading...</div>}
             <ul>
                 {travels && travels.map(travel => (
                     <li key={travel.id}>

@@ -23,3 +23,7 @@
     font-size: 16px;
     flex-grow: 1;
   }
+.pendingBox {
+  background-color: rgba(0, 204, 255, 0.5);
+  height: 300px;
+}
