@@ -7,13 +7,18 @@ export default function TravelList() {
     const [travels, setTravels] = useState([])
     const [url, setUrl] = useState('http://localhost:3000/travel')
 
-    // 해당 component 가 처음 evaluation 될 때, 오직 한번만 실행된다는 useEffect안에 fetch부분을 넣어주면... 무한달리기를 멈춘다.
+    // 방법 2. fetch를 사용해도 되는데, 너무 멋있어보이지만, 무서워서 접근하지 못했던 async~await에 도전을 해보자. 
+    const fetchTravels = async () => {
+        const response = await fetch(url)
+        const json = await response.json()
+        setTravels(json)
+    }
+
+    // 방법 1. 해당 component 가 처음 evaluation 될 때, 오직 한번만 실행된다는 useEffect안에 fetch부분을 넣어주면... 무한달리기를 멈춘다.
     // 하지만 useEffect 의 dependency 값에 변화가 생기면, 다시 실행된다. state에 비해서 일을 참 똑똑하게 하는 녀석이다.
     useEffect(() => {
-        fetch(url)
-            .then(response => response.json())
-            .then(json => setTravels(json))
-    }, [url])
+        fetchTravels()
+    }, [url, fetchTravels])
 
     console.log(travels)
 
