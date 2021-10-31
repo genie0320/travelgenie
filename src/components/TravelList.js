@@ -5,13 +5,15 @@ export default function TravelList() {
 
     // 지금껏 useState 만 사용했는데, setState를 쓸 때마다 다시 렌더링하는 특성상, 지금 상황에선 무한궤도에 빠질 우려가 있다.
     const [travels, setTravels] = useState([])
+    const [url, setUrl] = useState('http://localhost:3000/travel')
 
-    // 처음 렌더링시에 오직 한번만 실행된다는 useEffect안에 fetch부분을 넣어주면... 무한달리기를 멈춘다.
+    // 해당 component 가 처음 evaluation 될 때, 오직 한번만 실행된다는 useEffect안에 fetch부분을 넣어주면... 무한달리기를 멈춘다.
+    // 하지만 useEffect 의 dependency 값에 변화가 생기면, 다시 실행된다. state에 비해서 일을 참 똑똑하게 하는 녀석이다.
     useEffect(() => {
-        fetch('http://localhost:3000/travel')
+        fetch(url)
             .then(response => response.json())
             .then(json => setTravels(json))
-    }, [])
+    }, [url])
 
     console.log(travels)
 
@@ -26,6 +28,15 @@ export default function TravelList() {
                     </li>
                 ))}
             </ul>
+
+            <div className="filters">
+                <button onClick={() => {
+                    setUrl('http://localhost:3000/travel?loc=South')
+                }}>Travel to Northern</button>
+                <button onClick={() => {
+                    setUrl('http://localhost:3000/travel')
+                }}>All</button>
+            </div>
         </div>
     )
 }

@@ -14,3 +14,12 @@
     list-style-type: none;
     margin: 20px 0;
   }
+  .travel-list .filters {
+    display: flex;
+    gap: 10px;
+  }
+  .travel-list button {
+    padding: 10px;
+    font-size: 16px;
+    flex-grow: 1;
+  }

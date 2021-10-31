@@ -3,22 +3,26 @@
         {
             "title": "2 Nights Stay in Seoul",
             "price": "₩ 700,000",
-            "id": "1"
+            "id": "1",
+            "loc": "North"
         },
         {
             "title": "3 Nights Stay in Jeju",
             "price": "₩ 1,200,000",
-            "id": "2"
+            "id": "2",
+            "loc": "End of South"
         },
         {
             "title": "1 Nights Stay in Pohang",
             "price": "₩ 150,000",
-            "id": "3"
+            "id": "3",
+            "loc": "South"
         },
         {
             "title": "5 Nights Stay in Gyeongju",
             "price": "₩ 850,000",
-            "id": "4"
+            "id": "4",
+            "loc": "South"
         }
     ]
 }
