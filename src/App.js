@@ -1,12 +1,13 @@
+import { useState } from 'react'
 import './App.css';
 import TravelList from './components/TravelList';
 
-// fetch & useEffect
-
 function App() {
+  const [showTravels, setShowTravels] = useState(true)
   return (
     <div className="App">
-      <TravelList />
+      <button onClick={() => setShowTravels(false)}>Stop fetch</button>
+      {showTravels && <TravelList />}
     </div>
   );
 }

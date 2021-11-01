@@ -3,8 +3,6 @@ import { useFetch } from '../hooks/useFetch'
 
 import './TravelList.css'
 
-// Improve reusability - custom hook
-
 export default function TravelList() {
     const [url, setUrl] = useState('http://localhost:3000/travel')
     const { data: travels, isPending, error } = useFetch(url)
