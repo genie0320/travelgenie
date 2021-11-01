@@ -31,6 +31,12 @@
     "item2" : [ ... ]
 }
 
+### To study
+#### react.fetch
+#### react.async
+#### css.flexbox
+#### 데이터유형 (원시타입, 참조타입 추가적으로 ==, === 도.)
+
 ### 기타
 #### VScode의 기본폰트를 '네이버 D2Coding ligature'로 변경.
 1) 폰트다운 및 설치 : https://github.com/naver/d2codingfont 
