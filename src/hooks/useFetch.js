@@ -8,11 +8,14 @@ import { useEffect, useState } from "react"
 
 // 개념은 알겠는데... 힘들구나... 일단은 때려 외우자.
 
-export const useFetch = (url) => {
+export const useFetch = (url, _objectTypeData) => {
     const [data, setData] = useState(null)
     const [isPending, setIsPending] = useState(false)
     const [error, setError] = useState(null)
 
+    // 둘러보니... 이 위의 const 들에서는 인자로 받은 값들을, 내부에서 사용하기 좋은 형태로 변경해서 다시 저장하기 위해서 쓰기도 하는 것 같다. 
+    // 이를테면...useEffect의 dependency 인자로 참조형데이터를 넘기면... 무한루프에 빠지게 된다. 하지만 아래와 같이 해당 값을, 원시타입으로 바꾸어서 전달해주면, 무한루프에 빠지지 않는다.
+    // const objectTypeData = useRef(_objectTypeData).current
 
     useEffect(() => {
         const controller = new AbortController()
@@ -22,8 +25,8 @@ export const useFetch = (url) => {
             setIsPending(true)
 
             try {
-                const res = await fetch(url, { signal: controller.signal })
                 //fetch()는 optional 하게 다음인자를 받을 수 있다.
+                const res = await fetch(url, { signal: controller.signal })
 
                 if (!res.ok) {
                     throw new Error(res.statusText)
@@ -39,7 +42,6 @@ export const useFetch = (url) => {
                 if (error.name === "AbortError") {
                     console.log('the fetch was aborted')
                 } else {
-
                     // 그 밖의 경우는 아래에서 제어.
                     setIsPending(false)
                     setError('No fetch Data')
@@ -50,11 +52,16 @@ export const useFetch = (url) => {
 
         fetchData()
 
+        // ! 이해가 안되는게... useEffect()는 선언된 변수들의 값을 변경할 것이다. 
+        // 그런데 또 return으로 뭘 돌려준다. 이러면 useEffect를 실행할 때마다 무조건 abort가 날아가야 할 것 같은데, 실행해보면 내가 계획했던 대로 되기는 한다. 
+        // 의심해볼 수 있는 것은 AbortController() 자체의 속성 또는 js 함수의 기본적인 성격인데...기본이 부족한 나로서는... 이렇게 기록을 남겨 놓는 수 밖에 없을 것 같다. 
+        // https://dom.spec.whatwg.org/#abortcontroller-api-integration
+
         return () => {
             controller.abort()
         }
 
-    }, [url])
+    }, [url, objectTypeData])
 
     return { data, isPending, error }
 }
